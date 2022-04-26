@@ -4,7 +4,6 @@ variable "project_name" {}
 variable "min_nodes" {}
 variable "max_nodes" {}
 variable "machine_size" {}
-variable "registry" {}
 variable "registry_password" {}
 variable "email" {}
 
