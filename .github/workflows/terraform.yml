@@ -37,7 +37,7 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       env:
-        TF_VAR_do_token: $${{ secrets.DO_TOKEN }}
+        TF_VAR_do_token: ${{ secrets.DO_TOKEN }}
         TF_VAR_region: nyc1
         TF_VAR_project_name: safeops-challenge-cluster
         TF_VAR_min_nodes: 1
