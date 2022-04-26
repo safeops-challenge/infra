@@ -34,7 +34,7 @@ jobs:
       run: terraform init
     
     - name: Create tfvars file
-      run: echo ${{ secrest.VAR_FILE }} > terraform.tfvars
+      run: echo ${{ secrets.VAR_FILE }} > terraform.tfvars
     
     # Generates an execution plan for Terraform
     - name: Terraform Plan
