@@ -61,11 +61,11 @@ spec:
         image: registry.digitalocean.com/safeops-challenge/web:latest
         ports:
         - containerPort: 3000
-         resources:
-          limits:
-            cpu: 100m
-          requests:
-            cpu: 60m
+        resources:
+        limits:
+          cpu: 100m
+        requests:
+          cpu: 60m
         env:
         - name: PORT
           value: "3000"
