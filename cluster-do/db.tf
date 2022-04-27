@@ -24,16 +24,17 @@ resource "digitalocean_database_firewall" "cluster-fw" {
   }
 }
 
-resource "kubernetes_secret" "api-secret" {
-  metadata {
-    name      = "api"
-    namespace = kubernetes_namespace.ns_app.metadata.0.name
+  resource "kubernetes_secret" "api-secret" {
+    count = length(kubernetes_namespace.ns)
+    metadata {
+      name      = "api"
+      namespace = kubernetes_namespace.ns[count.index].metadata.0.name
+    }
+    data = {
+      DB = digitalocean_database_cluster.postgres.private_uri
+      PORT = 8080
+      NODE_TLS_REJECT_UNAUTHORIZED = "0"
+    }
   }
-  data = {
-    DB = digitalocean_database_cluster.postgres.private_uri
-    PORT = 8080
-    NODE_TLS_REJECT_UNAUTHORIZED = "0"
-  }
-}
 
 

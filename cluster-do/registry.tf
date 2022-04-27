@@ -7,9 +7,10 @@ resource "digitalocean_container_registry" "registry" {
 }
 
 resource "kubernetes_secret" "docker-registry-secret" {
+  count = length(kubernetes_namespace.ns)
   metadata {
     name      = var.registry_name
-    namespace = kubernetes_namespace.ns_app.metadata.0.name
+    namespace = kubernetes_namespace.ns[count.index].metadata.0.name
   }
   data = {
     ".dockerconfigjson" = jsonencode({
