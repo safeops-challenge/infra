@@ -88,7 +88,8 @@ jobs:
       run: terraform apply -auto-approve -input=false
 
     - name: Debug
-      run: pwd && ls -la && ls .. -la
+      run: ls ../manifests
+      
     - name: K8s Ingress
       uses: actions-hub/kubectl@master
       env:
