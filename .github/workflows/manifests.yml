@@ -1,0 +1,19 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - manifests/**
+
+jobs:
+  kube:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Update kube resources
+      uses: actions-hub/kubectl@master
+      env:
+        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      with:
+        args: apply -f manifests
