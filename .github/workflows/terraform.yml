@@ -86,10 +86,17 @@ jobs:
         TF_VAR_email: marteomasoyyo@gmail.com
         TF_VAR_registry_name: safeops-challenge
       run: terraform apply -auto-approve -input=false
-
+      
+  ingress:
+    needs: [apply]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./manifests
+    steps:
     - name: K8s Ingress
       uses: actions-hub/kubectl@master
-      working-directory: ../manifests
       env:
         KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       with:
