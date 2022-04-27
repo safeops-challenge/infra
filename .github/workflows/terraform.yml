@@ -87,6 +87,8 @@ jobs:
         TF_VAR_registry_name: safeops-challenge
       run: terraform apply -auto-approve -input=false
 
+    - name: Debug
+      run: pwd && ls -la && ls .. -la
     - name: K8s Ingress
       uses: actions-hub/kubectl@master
       env:
