@@ -27,9 +27,9 @@ spec:
         - containerPort: 8080
         resources:
           limits:
-            cpu: 150m
+            cpu: 100m
           requests:
-            cpu: 80m
+            cpu: 60m
         envFrom:
         - secretRef:
             name: api
@@ -63,9 +63,9 @@ spec:
         - containerPort: 3000
         resources:
           limits:
-            cpu: 150m
+            cpu: 100m
           requests:
-            cpu: 80m
+            cpu: 60m
         env:
         - name: PORT
           value: "3000"
