@@ -13,8 +13,8 @@ jobs:
   kube:
     runs-on: ubuntu-latest
     steps:
-    - name: Debug directory
-      run: pwd && ls -la
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: Update kube resources
       uses: actions-hub/kubectl@master
       env:
