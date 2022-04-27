@@ -14,14 +14,6 @@ resource "digitalocean_database_firewall" "cluster-fw" {
     type  = "k8s"
     value = digitalocean_kubernetes_cluster.cluster.id
   }
-
-  dynamic rule {
-    for_each = digitalocean_kubernetes_cluster.cluster.node_pool[0].nodes
-    content {
-      type     = "droplet"
-      value    = rule.value["droplet_id"]
-    }
-  }
 }
 
   resource "kubernetes_secret" "api-secret" {
