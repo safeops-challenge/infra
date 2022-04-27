@@ -6,6 +6,8 @@ on:
     - main
     paths:
     - manifests/**
+  workflow_dispatch:
+
 
 jobs:
   kube:
