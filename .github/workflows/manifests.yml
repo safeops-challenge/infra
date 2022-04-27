@@ -11,6 +11,8 @@ jobs:
   kube:
     runs-on: ubuntu-latest
     steps:
+    - name: Debug directory
+      run: pwd && ls -la
     - name: Update kube resources
       uses: actions-hub/kubectl@master
       env:
