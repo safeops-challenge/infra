@@ -1,4 +1,4 @@
-name: K8S
+name: K8s apps
 
 on:
   push:
@@ -8,9 +8,9 @@ on:
     - manifests/**
   workflow_dispatch:
 
-
 jobs:
-  kube:
+  dev:
+    environment: Dev
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -20,4 +20,16 @@ jobs:
       env:
         KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       with:
-        args: apply -f manifests
+        args: apply -f manifests/dev
+  prod:
+    environment: Prod
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Update kube resources
+      uses: actions-hub/kubectl@master
+      env:
+        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      with:
+        args: apply -f manifests/prod
