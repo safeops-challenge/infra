@@ -34,10 +34,9 @@ jobs:
     - name: Terraform Init
       run: terraform init
     
-    # Generates an execution plan for Terraform
     - name: Terraform Plan
       env:
-        TF_VAR_do_token: $${{ secrets.DO_TOKEN }}
+        TF_VAR_do_token: ${{ secrets.DO_TOKEN }}
         TF_VAR_region: nyc1
         TF_VAR_project_name: safeops-challenge-cluster
         TF_VAR_min_nodes: 1
@@ -48,7 +47,15 @@ jobs:
         TF_VAR_registry_name: safeops-challenge
       run: terraform plan -input=false
 
-      # On push to main, build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-    #- name: Terraform Apply
-    #  run: terraform apply -auto-approve -input=false
+    - name: Terraform Apply 
+      env:
+        TF_VAR_do_token: ${{ secrets.DO_TOKEN }}
+        TF_VAR_region: nyc1
+        TF_VAR_project_name: safeops-challenge-cluster
+        TF_VAR_min_nodes: 1
+        TF_VAR_max_nodes: 3
+        TF_VAR_machine_size: s-2vcpu-2gb
+        TF_VAR_registry_password: ${{ secrets.REGISTRY_PASSWORD }}
+        TF_VAR_email: marteomasoyyo@gmail.com
+        TF_VAR_registry_name: safeops-challenge
+      run: terraform apply -auto-approve -input=false
