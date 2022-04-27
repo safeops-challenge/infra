@@ -6,6 +6,8 @@ on:
     - main
     paths:
     - cluster-do/**
+  workflow_dispatch:
+
 
 jobs:
   terraform:
