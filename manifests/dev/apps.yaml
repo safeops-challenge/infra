@@ -25,6 +25,11 @@ spec:
         image: registry.digitalocean.com/safeops-challenge/api:latest
         ports:
         - containerPort: 8080
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 250m
         envFrom:
         - secretRef:
             name: api
@@ -56,6 +61,11 @@ spec:
         image: registry.digitalocean.com/safeops-challenge/web:latest
         ports:
         - containerPort: 3000
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 250m
         env:
         - name: PORT
           value: "3000"
