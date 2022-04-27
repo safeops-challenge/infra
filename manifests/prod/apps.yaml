@@ -62,10 +62,10 @@ spec:
         ports:
         - containerPort: 3000
         resources:
-        limits:
-          cpu: 100m
-        requests:
-          cpu: 60m
+          limits:
+            cpu: 100m
+          requests:
+            cpu: 60m
         env:
         - name: PORT
           value: "3000"
